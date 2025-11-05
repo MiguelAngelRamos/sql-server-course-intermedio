@@ -12,3 +12,28 @@ UPDATE Usuarios SET Email = 'pedro.sql.master@basedatos.com', NombreUsuario = 'p
 ```sql
 SELECT * FROM AuditoriaUsuarios;
 ```
+
+## Probando la Función
+
+```sql
+PRINT '--- Verificando el uso de la Función (fn_ObtenerConteoLikes) ---';
+SELECT 
+    p.PublicacionID, 
+    u.NombreUsuario AS Autor, 
+    p.TextoContenido,
+    dbo.fn_ObtenerConteoLikes(p.PublicacionID) AS ConteoDeLikes
+FROM 
+    Publicaciones p
+INNER JOIN 
+    Usuarios u ON p.UsuarioID = u.UsuarioID
+ORDER BY 
+    ConteoDeLikes DESC;
+```
+
+## Execute del Procedimiento Almacenado
+
+```sql
+DECLARE @NuevoID INT;
+EXEC dbo.sp_CrearUsuario 'sofia', 'sofia@correo.com', @NuevoID OUTPUT;
+SELECT @NuevoID AS Nuevo_id_User;
+```
