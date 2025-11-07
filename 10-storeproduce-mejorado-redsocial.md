@@ -73,6 +73,7 @@ BEGIN
         DECLARE @ErrorState INT = ERROR_STATE();
         
         RAISERROR(@ErrorMessage, @ErrorSeverity, @ErrorState);
+        PRINT 'EL ERROR SEVERIDAD: ' + CAST(@ErrorSeverity AS VARCHAR(10)) + ' Y ' + 'ESTADO DE ERROR: ' + CAST(@ErrorState AS VARCHAR(10));
     END CATCH;
 END;
 
